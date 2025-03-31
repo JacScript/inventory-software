@@ -5,7 +5,7 @@ import SubscriptionCard from './SubsriptionCard';
 
 export default function Sidebar() {
   return (
-     <div className='w-64  min-h-screen bg-slate-800 text-slate-50 flex flex-col justify-between'>
+     <div className='w-64  min-h-screen bg-slate-800 text-slate-50 flex flex-col justify-between fixed'>
             {/* Top part */}
             <div className="flex flex-col">
  
@@ -65,9 +65,9 @@ export default function Sidebar() {
 
             {/* Bottom part */}
             <div className="flex flex-col">
-            <div className="flex space-x-2 items-center justify-center bg-slate-950 py-3 px-2">
+            <button className="flex space-x-2 items-center justify-center bg-slate-950 py-3 px-2">
                 <ChevronLeft/>
-            </div>
+            </button>
 
 
            

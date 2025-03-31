@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function SubsriptionCard() {
@@ -9,7 +10,10 @@ export default function SubsriptionCard() {
          <p className='text-md'>Your Premium plan's trial expires in <span className='text-orange-400 text-sm'>13 days</span>.</p>
         </div>
 
-        <div className='border-t border-slate-300'></div>
+        <div className='border-t border-slate-600 flex space-x-4 justify-center' >
+          <button className=' border-r border-slate-600 pr-2 pt-2 '>Change Plan</button>
+          <Link href="#" className='pt-2'>Upgrade </Link>
+        </div>
     </div>
   )
 }
