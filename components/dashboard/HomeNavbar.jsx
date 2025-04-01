@@ -1,29 +1,34 @@
+"use client"
 import { Building2 } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
 export default function HomeNavbar() {
+
+    const pathname = usePathname();
+    console.log(pathname)
  
     const navLinks = [
         {
             id: 1,
             title : "Dashboard",
-            href : "/"
+            href : "/dashboard/home/overview"
         },
         {
             id: 2,
             title : "Getting Started",
-            href : "/"
+            href : "/dashboard/home/getting-started"
         },
         {
-            id: 1,
+            id: 3,
             title : "Recents Updates",
-            href : "/"
+            href : "/dashboard/home/updates"
         },
         {
-            id: 1,
+            id: 4,
             title : "Announcements",
-            href : "/"
+            href : "/dashboard/home/announcements"
         },
     ]
 
@@ -40,11 +45,11 @@ export default function HomeNavbar() {
         </div>
 
         {/* Nav */}
-        <nav className='sticky space-x-2'>
+        <nav className='sticky space-x-4 mt-[30px] flex ' >
             {
                 navLinks.map((navLink) => {
                     return (
-                        <Link  key={navLink.id} className='border-b-4 p-1 border-blue-600' href={navLink.href}>{navLink.title}</Link>
+                        <Link  key={navLink.id} className={`${pathname === navLink.href ? "border-b-2 border-blue-600 py-[2px] transition-all ease-in duration-200" : "py-[2px]"} `} href={navLink.href}>{navLink.title}</Link>
                     )
                 })
             }

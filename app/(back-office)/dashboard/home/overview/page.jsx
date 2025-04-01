@@ -1,9 +1,13 @@
 import React from 'react'
+import DashboardBanner from '@/components/dashboard/DashboardBanner'
+import SalesOverview from '@/components/dashboard/SalesOverview'
+
 
 export default function Dashboard() {
   return (
     <div>
-        <h2 className=''>Dashboard</h2>
+        <DashboardBanner />
+        <SalesOverview/>
     </div>
   )
 }
