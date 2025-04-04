@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function SubsriptionCard() {
+export default function SubscriptionCard() {
   return (
     <div className='mx-2 mt-12 bg-slate-900 py-2 rounded-lg'>
        

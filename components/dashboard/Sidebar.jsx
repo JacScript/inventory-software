@@ -1,83 +1,120 @@
-import { BaggageClaim, BarChart3, BarChart4, Cable, ChevronLeft, Files, Home, ShoppingBag, ShoppingBasket, ShoppingCart } from 'lucide-react'
+"use client";
+import { BaggageClaim, BarChart3, BarChart4, Cable, ChevronLeft, Files, Home, PlusCircle, ShoppingBag, ShoppingBasket, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react';
-import SubscriptionCard from './SubsriptionCard';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import CollapsableLink from './CollapsibleLink';
+import SubscriptionCard from './SubscriptionCard';
+
 
 export default function Sidebar() {
+     const inventoryLinks = [
+      {
+        id: 1,
+        title: "Item",
+        href:"#"
+      },
+      {
+        id: 1,
+        title: "Item Groups",
+        href:"#",
+      },
+      
+      {
+        id: 1,
+        title: "Inventory Adjustments",
+        href:"#",
+      },
+     ]
+
   return (
-     <div className='w-64  min-h-screen bg-slate-800 text-slate-50 flex flex-col justify-between fixed'>
-            {/* Top part */}
-            <div className="flex flex-col">
- 
-            {/* Logo */}
-            <Link href="#" className="flex space-x-2 items-center bg-slate-950 py-3 px-2">
-                <BaggageClaim/>
-                <span className='font-semibold text-xl'>Inventory</span>
-            </Link>
+    <div className="w-64  min-h-screen bg-slate-800 text-slate-50 flex flex-col justify-between fixed">
+      {/* Top part */}
+      <div className="flex flex-col">
+        {/* Logo */}
+        <Link
+          href="#"
+          className="flex space-x-2 items-center bg-slate-950 py-3 px-2"
+        >
+          <BaggageClaim />
+          <span className="font-semibold text-xl">Inventory</span>
+        </Link>
+
+        {/* Links */}
+        <nav className="flex flex-col space-y-3 px-3 py-4">
+          <Link
+            className="flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 rounded-lg"
+            href="#"
+          >
+            <Home className="w-4 h-4" />
+            <span>Home</span>
+          </Link>
 
 
-            {/* Links */}
-            <nav className='flex flex-col space-y-3 px-3 py-4'>
-                <Link className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 rounded-lg' href="#">
-                <Home className='w-4 h-4'/>
-                <span>Home</span>
-                </Link>
+{/* collapsible component */}
+          <Collapsible>
+            <CollapsibleTrigger className='flex items-center space-x-2 p-2'>
+          
+            <ShoppingCart className="w-4 h-4" />
+            <span>Inventory</span>
+          
+            </CollapsibleTrigger>
+            <CollapsibleContent>
 
-                <button className='flex items-center space-x-2 p-2' href="">
-                <Home className='w-4 h-4'/>
-                <span>Inventory</span>
-                </button>
+            {
+              inventoryLinks.map((link) =>{
+                return (
+                 <CollapsableLink item={link}/>
+                )
+              })
+            }
+             
+            </CollapsibleContent>
+          </Collapsible>
 
+          
+          <button className="flex items-center space-x-2 p-2" href="">
+            <ShoppingBasket className="w-4 h-4" />
+            <span>Sales</span>
+          </button>
 
-                <button className='flex items-center space-x-2 p-2' href="">
-                <ShoppingBasket className='w-4 h-4'/>
-                <span>Sales</span>
-                </button>
+          <button className="flex items-center space-x-2 p-2" href="">
+            <ShoppingBag className="w-4 h-4" />
+            <span>Purchases</span>
+          </button>
 
+          <Link className="flex items-center space-x-2 p-2" href="#">
+            <Cable className="w-4 h-4" />
+            <span>Integrations</span>
+          </Link>
 
-                <button className='flex items-center space-x-2 p-2' href="">
-                <ShoppingBag className='w-4 h-4'/>
-                <span>Purchases</span>
-                </button>
+          <Link className="flex items-center space-x-2 p-2" href="#">
+            <BarChart3 className="w-4 h-4" />
+            <span>Reports</span>
+          </Link>
 
+          <Link className="flex items-center space-x-2 p-2" href="#">
+            <Files className="w-4 h-4" />
+            <span>Documents</span>
+          </Link>
+        </nav>
+      </div>
+        {/* Subscription Card */}
+      {/* <SubscriptionCard /> */}
+      <SubscriptionCard />
 
-                <Link className='flex items-center space-x-2 p-2' href="#">
-                <Cable className='w-4 h-4'/>
-                <span>Integrations</span>
-                </Link>
+      {/* Bottom part */}
+      <div className="flex flex-col">
+        <button className="flex space-x-2 items-center justify-center bg-slate-950 py-3 px-2">
+          <ChevronLeft />
+        </button>
 
-                <Link className='flex items-center space-x-2 p-2' href="#">
-                <BarChart3 className='w-4 h-4'/>
-                <span>Reports</span>
-                </Link>
-
-                <Link className='flex items-center space-x-2 p-2' href="#">
-                <Files className='w-4 h-4'/>
-                <span>Documents</span>
-                </Link> 
-
-            </nav>
-            </div>
-            <SubscriptionCard />
-
-
-
-
-            {/* Bottom part */}
-            <div className="flex flex-col">
-            <button className="flex space-x-2 items-center justify-center bg-slate-950 py-3 px-2">
-                <ChevronLeft/>
-            </button>
-
-
-           
- 
-
-
-
-            {/* Subscription Card */}
-            {/* Footer Icon */}
-            </div>
-          </div>
-  )
+        {/* Footer Icon */}
+      </div>
+    </div>
+  );
 }
