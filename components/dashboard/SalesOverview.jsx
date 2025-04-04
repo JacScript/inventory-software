@@ -63,9 +63,9 @@ export default function SalesOverview() {
           <div className=" pr-8 grid grid-cols-4 gap-4">
             {/* card */}
             {
-              saleActivity.map((item) => {
+              saleActivity.map((item,idx) => {
                 return (
-                 <SalesActivityCard item={item} />
+                 <SalesActivityCard item={item}  key={idx}/>
                 )
               })
             }
@@ -79,9 +79,9 @@ export default function SalesOverview() {
            <div className='flex flex-col space-y-4'>
 
             {
-              inventorySummary.map((item) => {
+              inventorySummary.map((item, idx) => {
                 return (
-                  <InventorySummaryCard item={item}/>
+                  <InventorySummaryCard item={item} key={idx}/>
                 );
               })
             }
