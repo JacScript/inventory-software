@@ -4,7 +4,7 @@ import { HelpCircle, LayoutGrid, List, MoreHorizontal, Plus } from "lucide-react
 import Link from "next/link";
 import React from "react";
 
-export default function FixedHeader() {
+export default function FixedHeader({newLink}) {
   return (
     <div className="flex justify-between items-center bg-white py-5 px-4  ">
       {/* Left Section */}
@@ -15,7 +15,7 @@ export default function FixedHeader() {
       {/* Right Section */}
       <div className="flex gap-4">
         {/* New */}
-        <Link href="#" className="flex items-center gap-2 py-1.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition ">
+        <Link href={newLink} className="flex items-center gap-2 py-1.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition ">
           <Plus size={18} />
           <span>New</span>
         </Link>
