@@ -1,51 +1,45 @@
+"use client";
 import FixedHeader from "@/components/dashboard/FixedHeader";
-import { Shirt } from "lucide-react";
+import OptionCard from "@/components/dashboard/OptionCard";
+import { Boxes, Shirt } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 export default function Inventory() {
+  const optionCards = [
+    {
+      title: "Items Groups",
+      desc: "Create multiple variants of the same item using item Groups.",
+      link: "/new",
+      linkTitle: "Create new item Groups",
+      enabled: true,
+      icon: Boxes,
+    },
+    {
+      title: "Items",
+      desc: "Create standalone items and services that you buy and sell",
+      link: "/new",
+      linkTitle: "Create new item",
+      enabled: true,
+      icon: Shirt,
+    },
+    {
+      title: "Composite Items",
+      desc: "Bundle different items together and sell them as a single item",
+      link: "/new",
+      linkTitle: "Create new item",
+      enabled: true,
+      icon: Shirt,
+    },
+  ];
+
   return (
     <div>
       <FixedHeader />
       <div className="grid grid-col-1 lg:grid-cols-2 py-8 px-16 gap-6">
-
-        <div className="shadow-xl bg-white flex flex-col items-center space-y-4 justify-center p-6 rounded">
-          <h2>Item Groups</h2>
-          <div className="">
-            <Shirt className="w-36 h-36" strokeWidth={0.6} />
-          </div>
-          <p className="line-clamp-1">
-            Create multiple variants of the same item using Item Groups
-          </p>
-          <Link
-            href="#"
-            className="inline-flex items-center gap-2 py-1.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition "
-          >
-            New Item Group
-          </Link>
-          {/* <button className="inline-flex items-center gap-2 py-1.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition ">
-            Enable
-          </button> */}
-        </div>
-
-        <div className="shadow-xl bg-white flex flex-col items-center space-y-4 justify-center p-6 rounded">
-          <h2>Item Groups</h2>
-          <div className="">
-            <Shirt className="w-36 h-36" strokeWidth={0.6} />
-          </div>
-          <p className="line-clamp-1">
-            Create multiple variants of the same item using Item Groups
-          </p>
-          <Link
-            href="#"
-            className="inline-flex items-center gap-2 py-1.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition "
-          >
-            New Item Group
-          </Link>
-          {/* <button className="inline-flex items-center gap-2 py-1.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition ">
-            Enable
-          </button> */}
-        </div>
+        {optionCards.map((card, idx) => {
+          return <OptionCard optionData={card} key={idx} />;
+        })}
       </div>
     </div>
   );
