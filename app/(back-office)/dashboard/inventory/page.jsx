@@ -10,7 +10,7 @@ export default function Inventory() {
     {
       title: "Items Groups",
       desc: "Create multiple variants of the same item using item Groups.",
-      link: "/new",
+      link: "/dashboard/inventory/items/new",
       linkTitle: "Create new item Groups",
       enabled: true,
       icon: Boxes,
@@ -18,7 +18,7 @@ export default function Inventory() {
     {
       title: "Items",
       desc: "Create standalone items and services that you buy and sell",
-      link: "/new",
+      link: "/dashboard/inventory/items/new",
       linkTitle: "Create new item",
       enabled: true,
       icon: Shirt,

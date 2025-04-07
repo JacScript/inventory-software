@@ -13,16 +13,30 @@ export default function Sidebar() {
       {
         id: 1,
         title: "Items",
-        href:"/dashboard/inventory"
+        href:"/dashboard/inventory/items/new"
       },
       {
         id: 2,
-        title: "Item Groups",
-        href:"/dashboard/inventory",
+        title: "Categories",
+        href:"/dashboard/inventory/categories/new",
       },
-      
       {
         id: 3,
+        title: "Brands",
+        href:"/dashboard/inventory/brands/new",
+      },
+      {
+        id: 4,
+        title: "Units",
+        href:"/dashboard/inventory/units/new",
+      },
+      {
+        id: 5,
+        title: "Warehouse",
+        href:"/dashboard/inventory/warehouse/new",
+      },
+      {
+        id: 6,
         title: "Inventory Adjustments",
         href:"#",
       },

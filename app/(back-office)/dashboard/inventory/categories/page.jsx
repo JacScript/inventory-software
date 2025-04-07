@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Itemgroups() {
+export default function Categories() {
   return (
     <div>
       {/* Header */}

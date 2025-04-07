@@ -6,15 +6,18 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import CollapsableLink from './CollapsibleLink'
-// import { ShoppingCart } from 'lucide-react'
+import { ChevronRight} from 'lucide-react'
 
 export default function SidebarDropdownLink({title,items, icon}) {
   const Icon = icon;
   return (
     <Collapsible>
-            <CollapsibleTrigger className="flex items-center space-x-2 p-2">
+            <CollapsibleTrigger className="flex justify-between items-center w-full">
+              <div className="flex items-center space-x-2 p-2">
               <Icon className="w-4 h-4" />
               <span>{title}</span>
+              </div>
+              <ChevronRight size={18}/>
             </CollapsibleTrigger>
             <CollapsibleContent>
               {items.map((item) => {
