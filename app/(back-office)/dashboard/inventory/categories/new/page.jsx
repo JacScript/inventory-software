@@ -54,7 +54,7 @@ export default function NewCategory() {
       >
         <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
           <TextInput
-            label="Category title"
+            label="Category Title"
             name="title"
             register={register}
             errors={errors}
@@ -63,7 +63,7 @@ export default function NewCategory() {
             //  className="sm:col-span-2"
           />
           <TextareaInput
-            label="Category description"
+            label="Category Description"
             name="description"
             register={register}
             errors={errors}
