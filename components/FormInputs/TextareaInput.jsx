@@ -38,7 +38,7 @@ export default function TextareaInput({
           defaultValue={""}
           placeholder={`Type the ${label}`}
         />
-        {errors.title && (
+        {errors[`${name}`] && (
           <span className="text-sm text-red-600 ">
             {label}  is required
           </span>

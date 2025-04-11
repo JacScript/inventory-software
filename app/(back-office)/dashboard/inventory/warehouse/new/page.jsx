@@ -1,5 +1,6 @@
 "use client";
 import FormHeader from "@/components/dashboard/FormHeader";
+import SelectInput from "@/components/FormInputs/SelectInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import TextInput from "@/components/FormInputs/TextInput";
@@ -8,6 +9,16 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function NewWarehouse() {
+  const selectOptions = [
+    {
+      label: "Main",
+      value: "main",
+    },
+    {
+      label: "Branch",
+      value: "branch",
+    },
+  ];
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -17,7 +28,7 @@ export default function NewWarehouse() {
   } = useForm();
 
   async function onSubmit(data) {
-    console.log(data)
+    console.log(data);
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -32,11 +43,11 @@ export default function NewWarehouse() {
 
       if (response.ok) {
         console.log(response);
-        setLoading(false)
+        setLoading(false);
         reset();
       }
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log(error);
     }
   }
@@ -73,16 +84,15 @@ export default function NewWarehouse() {
             //  type= "text"
             //  className="sm:col-span-2"
           />
-          {/* <TextInput
-            label="Warehouse  Type"
-            name="title"
-            className="w-full"
+          <SelectInput
+            name="type"
+            label="Select The Warehouse Type"
             register={register}
             errors={errors}
-            //  isRequired ={true}
-            //  type= "text"
-            //  className="sm:col-span-2"
-          /> */}
+             className="w-full"
+            options={selectOptions}
+            
+          />
           <TextareaInput
             label="Category Description"
             name="description"

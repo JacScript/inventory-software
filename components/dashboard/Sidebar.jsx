@@ -13,7 +13,7 @@ export default function Sidebar() {
       {
         id: 1,
         title: "Items",
-        href:"/dashboard/inventory"
+        href:"/dashboard/inventory/items/new",
       },
       {
         id: 2,
