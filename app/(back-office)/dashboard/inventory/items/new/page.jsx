@@ -4,6 +4,7 @@ import SelectInput from "@/components/FormInputs/SelectInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import TextInput from "@/components/FormInputs/TextInput";
+import { UploadButton } from "@/lib/uploadthing";
 import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -41,6 +42,46 @@ export default function NewItem() {
       value: "9999bibIFYBVAWV",
     },
   ];
+
+  const warehouses = [
+    {
+      label: "Warehouse A",
+      value: "agrEW667knaognugno",
+    },
+    {
+      label: "Warehouse B",
+      value: "9999bibIFYBVAWV",
+    },
+    {
+      label: "Warehouse C",
+      value: "9999bibIFYBVAWV",
+    },
+  ];
+
+  const suppliers = [
+    {
+      label: "Supplier A",
+      value: "agrEW667knaognugno",
+    },
+    {
+      label: "Supplier B",
+      value: "9999bibIFYBVAWV",
+    },
+    {
+      label: "Supplier C",
+      value: "9999bibIFYBVAWV",
+    },
+
+    {
+      label: "Supplier D",
+      value: "9999bibIFYBVAWV",
+    },
+    {
+      label: "Supplier E",
+      value: "9999bibIFYBVAWV",
+    },
+  ];
+
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -55,7 +96,7 @@ export default function NewItem() {
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
-      const response = await fetch(`${baseUrl}/api/item`, {
+      const response = await fetch(`${baseUrl}/api/items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -130,7 +171,7 @@ export default function NewItem() {
           />
 
           <SelectInput
-            name="categoryId "
+            name="categoryId"
             label="Select The Item Category"
             register={register}
             errors={errors}
@@ -138,7 +179,7 @@ export default function NewItem() {
             options={categories}
           />
 
-<SelectInput
+          <SelectInput
             name="unitId"
             label="Select The Item Unit"
             register={register}
@@ -147,7 +188,7 @@ export default function NewItem() {
             options={units}
           />
 
-<SelectInput
+          <SelectInput
             name="brandId"
             label="Select The Item Brand"
             register={register}
@@ -155,23 +196,111 @@ export default function NewItem() {
             className="w-full"
             options={brands}
           />
-
-          <TextInput
+          <SelectInput
+            name="warehouseId"
+            label="Select The Warehouse"
+            register={register}
+            errors={errors}
+            className="w-full"
+            options={warehouses}
+          />
+          {/* <TextInput
             label="Item SKU"
             name="sku"
             register={register}
             errors={errors}
             className="w-full"
+          /> */}
+          <TextInput
+            label="Buying Price"
+            name="buyingPrice"
+            register={register}
+            type="number"
+            errors={errors}
+            className="w-full"
+          />
+
+          <TextInput
+            label="Selling Price"
+            name="sellingPrice"
+            register={register}
+            type="number"
+            errors={errors}
+            className="w-full"
+          />
+<SelectInput
+            name="supplierId"
+            label="Select The Item Supplier"
+            register={register}
+            errors={errors}
+            className="w-full"
+            options={suppliers}
+          />
+          <TextInput
+            label="Re-Order Point"
+            name="reOrderPoint"
+            register={register}
+            type="number"
+            errors={errors}
+            className="w-full"
+          />
+
+          <TextInput
+            label="Item Weight in Kgs"
+            name="weight"
+            register={register}
+            type="number"
+            errors={errors}
+            className="w-full"
+          />
+
+          <TextInput
+            label="Item Dimension in cm (20 x 20 x 20)"
+            name="dimension"
+            register={register}
+            errors={errors}
+            className="w-full"
+          />
+
+          <TextInput
+            label="Item Tax Rate in % "
+            name="taxRate"
+            register={register}
+            errors={errors}
+            type="number"
+            className="w-full"
           />
 
           <TextareaInput
-            label="Category Description"
+            label="Item Description  "
             name="description"
             register={register}
             errors={errors}
           />
+
+          <TextareaInput
+            label="Item Notes "
+            name="notes"
+            register={register}
+            errors={errors}
+          />
+
+          <div className="sm:col-span-2">
+          <UploadButton
+        endpoint="imageUploader"
+        onClientUploadComplete={(res) => {
+          // Do something with the response
+          console.log("Files: ", res);
+          alert("Upload Completed");
+        }}
+        onUploadError={(error) => {
+          // Do something with the error.
+          alert(`ERROR! ${error.message}`);
+        }}
+      />
+          </div>
         </div>
-        <SubmitButton isLoading={loading} title="Category" />
+        <SubmitButton isLoading={loading} title="Item" />
       </form>
     </div>
   );
