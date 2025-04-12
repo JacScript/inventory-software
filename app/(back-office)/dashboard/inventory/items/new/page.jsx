@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function NewItem() {
-  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState("");
   const categories = [
     {
       label: "Electronics",
