@@ -50,6 +50,14 @@ export default function Inventory() {
       enabled: true ,
       icon: ScrollText,
     },
+    {
+      title: "Inventory Adjustments", 
+      desc: "Transfer Stock from the Main Warehouse",
+      link: "/dashboard/inventory/adjustments /new",
+      linkTitle: "Create New Adjustments",
+      enabled: true ,
+      icon: ScrollText,
+    },
   ];
 
   return (

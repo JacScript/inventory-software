@@ -22,12 +22,12 @@ export default function TextareaInput({
     <div className={className}>
       <label
         htmlFor={name}
-        className="block text-sm font-medium leading-6 text-gray-900 mb-2 "
+        className="block text-sm font-medium leading-6 text-gray-900 mb-2"
       >
         {label}
       </label>
 
-      <div className="mt-2">
+      <div className="">
         <textarea
           {...register(`${name}`, { required: isRequired })}
           type={type}

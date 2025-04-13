@@ -14,6 +14,12 @@ const nextConfig = {
                 // port: '',
                 // pathname: '/**'
             },
+            {
+                protocol: 'https',
+                hostname: 'qrc1tso8m5.ufs.sh',
+                // port: '',
+                // pathname: '/**'
+            },
             // {
             //     protocol: 'https',
             //     hostname: 'images.unsplash.com',
