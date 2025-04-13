@@ -4,8 +4,9 @@ import SelectInput from "@/components/FormInputs/SelectInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import TextInput from "@/components/FormInputs/TextInput";
-import { UploadButton } from "@/lib/uploadthing";
-import { Plus } from "lucide-react";
+import { UploadButton, UploadDropzone } from "@/lib/uploadthing";
+import { Pencil, Plus } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -92,6 +93,7 @@ export default function NewItem() {
   } = useForm();
 
   async function onSubmit(data) {
+    data.imageUrl= imageUrl; 
     console.log(data);
     setLoading(true);
     const baseUrl = "http://localhost:3000";
@@ -286,12 +288,59 @@ export default function NewItem() {
             errors={errors}
           />
 
-          <div className="sm:col-span-2">
-          <UploadButton
+            {/* Upload thing */}
+        <div className="col-span-full">
+          <div className="flex justify-between items-center mb-4">
+            <label
+              htmlFor="course-image"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Item Image
+            </label>
+            {imageUrl && (
+              <button
+                onClick={() => setImageUrl("")}
+                type="button"
+                className="flex space-x-2  bg-slate-900 rounded-md shadow text-slate-50  py-2 px-4"
+              >
+                <Pencil className="w-5 h-5" />
+                <span>Change Image</span>
+              </button>
+            )}
+          </div>
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt="Item image"
+              width={1000}
+              height={667}
+              className="w-full h-64 object-cover"
+            />
+          ) : (
+            <UploadDropzone
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                setImageUrl(res[0].url);
+                // Do something with the response
+                console.log("Files: ", res);
+                console.log("Upload Completed");
+              }}
+              onUploadError={(error) => {
+                // Do something with the error.
+                console.log (`ERROR! ${error.message}`);
+              }}
+            />
+          )}
+        </div>
+
+          {/* <div className="sm:col-span-2">
+          <UploadDropzone
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           // Do something with the response
+          setImageUrl(res[0].url)
           console.log("Files: ", res);
+          console.log(res[0].url);
           alert("Upload Completed");
         }}
         onUploadError={(error) => {
@@ -299,7 +348,7 @@ export default function NewItem() {
           alert(`ERROR! ${error.message}`);
         }}
       />
-          </div>
+          </div> */}
         </div>
         <SubmitButton isLoading={loading} title="Item" />
       </form>
