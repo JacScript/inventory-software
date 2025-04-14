@@ -1,7 +1,7 @@
 "use client";
 import FixedHeader from "@/components/dashboard/FixedHeader";
 import OptionCard from "@/components/dashboard/OptionCard";
-import { Boxes, Component, ScrollText, Shirt } from "lucide-react";
+import { Diff, LayoutDashboard, LayoutPanelTopIcon, Scale, ScrollText, Slack, Warehouse } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect } from "react";
 
@@ -16,7 +16,7 @@ export default function Inventory() {
       link: "/dashboard/inventory/items/new",
       linkTitle: "Create New Item",
       enabled: true,
-      icon: Boxes,
+      icon: LayoutDashboard,
     },
     {
       title: "Categories",
@@ -24,7 +24,7 @@ export default function Inventory() {
       link: "/dashboard/inventory/categories/new",
       linkTitle: "Create New Category",
       enabled: true,
-      icon: Shirt,
+      icon: LayoutPanelTopIcon,
     },
     {
       title: "Brands",
@@ -32,7 +32,7 @@ export default function Inventory() {
       link: "/dashboard/inventory/brands/new",
       linkTitle: "Create New Brand",
       enabled: true,
-      icon: Component,
+      icon: Slack,
     },
     {
       title: "Warehouses", 
@@ -40,7 +40,7 @@ export default function Inventory() {
       link: "/dashboard/inventory/warehouse/new",
       linkTitle: "Create New Warehouse",
       enabled: true,
-      icon: ScrollText,
+      icon: Warehouse,
     },
     {
       title: "Units", 
@@ -48,7 +48,7 @@ export default function Inventory() {
       link: "/dashboard/inventory/units/new",
       linkTitle: "Create New Unit",
       enabled: true ,
-      icon: ScrollText,
+      icon: Scale,
     },
     {
       title: "Inventory Adjustments", 
@@ -56,14 +56,14 @@ export default function Inventory() {
       link: "/dashboard/inventory/adjustments /new",
       linkTitle: "Create New Adjustments",
       enabled: true ,
-      icon: ScrollText,
+      icon: Diff ,
     },
   ];
 
   return (
     <div>
       <FixedHeader newLink="/dashboard/inventory/items/new"/>
-      <div className="grid grid-col-1 lg:grid-cols-2 py-8 px-16 gap-6">
+      <div className="grid grid-col-1 lg:grid-cols-3 md:grid-cols-2 py-8 px-16 gap-6">
         {optionCards.map((card, idx) => {
           return <OptionCard optionData={card} key={idx} />;
         })}
