@@ -1,126 +1,60 @@
 "use client";
+import AddInventoryForm from "@/components/dashboard/AddInventoryForm";
 import FormHeader from "@/components/dashboard/FormHeader";
-import SelectInput from "@/components/FormInputs/SelectInput";
-import SubmitButton from "@/components/FormInputs/SubmitButton";
-import TextareaInput from "@/components/FormInputs/TextareaInput";
-import TextInput from "@/components/FormInputs/TextInput";
-import { Plus } from "lucide-react";
+import TransferInventoryForm from "@/components/dashboard/TransferInventoryForm";
+import { Minus, Plus } from "lucide-react";
+
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 
 export default function NewAdjustments() {
-  const branches = [
+  const tabs = [
     {
-      label: "Branch A",
-      value: "maiagaeshrnjan",
+      title: "Add Stock",
+      icon: Plus,
+      form : "add"
     },
     {
-      label: "Branch B",
-      value: "branchagaegah",
+      title: "Transfer Stock",
+      icon: Minus,
+      form: "transfer"
     },
   ];
-  const [loading, setLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
 
-  async function onSubmit(data) {
-    console.log(data);
-    setLoading(true);
-    const baseUrl = "http://localhost:3000";
-    // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    try {
-      const response = await fetch(`${baseUrl}/api/adjustments `, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
-
+  const [activeForm, setActiveForm] = useState("add");
+  
   return (
     <div>
       {/* header */}
       <FormHeader title="New Adjustments" href="/dashboard/inventory/" />
 
+      {/* tabs */}
+
+      <div className="border-b border-gray-200 dark:border-gray-700  w-full max-w-4xl px-4 py-2 bg-white border mx-auto my-4 shadow rounded-lg  ">
+        <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+          {/* <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400"> */}
+          {tabs.map((tab, idx) => {
+            const Icon = tab.icon;
+            return (
+              <li className="me-2" key={idx}>
+                <button
+            onClick={() => setActiveForm(tab.form)}
+                  className={`${activeForm === tab.form ? "inline-flex items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group": "inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 "}`}
+                >
+                  <Icon
+                    className="w-4 h-4 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500"
+                  />
+
+                  {tab.title}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
       {/* form */}
-      <form
-        action=""
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3"
-      >
-        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
-          <TextInput
-          type="number"
-            label="Enter Amount of Stock to Transfer"
-            name="transferStockQty"
-            register={register}
-            errors={errors}
-            className="w-full"
-            //  isRequired ={true}
-            //  type= "text"
-            //  className="sm:col-span-2"
-          />
-         
-          <SelectInput
-            name="receivingBranchId"
-            label="Select The Branch To Receive"
-            register={register}
-            errors={errors}
-             className="w-full"
-            options={branches}
-            
-          />
-          <TextareaInput
-          // placeholder="Please Enter short notes about transfer"
-            label="Adjustment Notes"
-            name="notes"
-            register={register}
-            errors={errors}
-            // isRequired = true,
-            // type = "text",
-            // className = "sm:col-span-2",
-          />
-          {/* <div className="sm:col-span-2">
-          <label
-            htmlFor="description"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Category Description
-          </label>
-          <div className="mt-2">
-            <textarea
-              {...register("description", { required: true })}
-              id="description"
-              name="description"
-              rows={3}
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              defaultValue={""}
-            />
-            {errors.title && (
-              <span className="text-sm text-red-600 ">
-                Category description is required
-              </span>
-            )}
-          </div>
-        </div> */}
-        </div>
-        <SubmitButton isLoading={loading} title="Adjustments" />
-      </form>
+      {activeForm === "add" ? (<AddInventoryForm/>) : ( <TransferInventoryForm />)}
+     
     </div>
   );
 }
