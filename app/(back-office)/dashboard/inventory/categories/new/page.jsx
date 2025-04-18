@@ -6,6 +6,7 @@ import TextInput from "@/components/FormInputs/TextInput";
 import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export default function NewCategory() {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ export default function NewCategory() {
   } = useForm();
 
   async function onSubmit(data) {
-    console.log(data)
+    // console.log(data)
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -31,8 +32,9 @@ export default function NewCategory() {
       });
 
       if (response.ok) {
-        console.log(response);
-        setLoading(false)
+        // console.log(response);
+        setLoading(false);
+        toast.success('Category Created Successfully!!')
         reset();
       }
     } catch (error) {
