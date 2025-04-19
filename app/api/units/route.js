@@ -5,19 +5,19 @@ export async function POST(request){
    try {
     
 
-    const {title, description } = await request.json();
+    const {title, abbreviation } = await request.json();
     const unit = await db.unit.create({
       data: {
         title,
-        description 
+        abbreviation 
       }
     })
-    console.log(unit);
+   //  console.log(unit);
     return NextResponse.json(unit);
 
 
    } catch (error) {
-    console.log(error )
+   //  cons ole.log(error )
      return NextResponse.json({
         error,
         message: "Failed to create a unit"

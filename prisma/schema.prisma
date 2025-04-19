@@ -30,7 +30,7 @@ model Brand {
 model Unit {
   id  String  @id @default(auto()) @map("_id") @db.ObjectId
   title String
-  description String?
+  abbreviation String
 }
 
 model Warehouse {

@@ -38,8 +38,10 @@ export default function NewCategory() {
         reset();
       }
     } catch (error) {
-      setLoading(false)
-      console.log(error);
+      setLoading(false);
+      toast.error("Failed to create a category");
+      reset();
+      // console.log(error);
     }
   }
 

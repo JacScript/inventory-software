@@ -6,6 +6,7 @@ import TextInput from "@/components/FormInputs/TextInput";
 import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export default function NewBrand() {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ export default function NewBrand() {
   } = useForm();
 
   async function onSubmit(data) {
-    console.log(data)
+    // console.log(data)
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -31,13 +32,16 @@ export default function NewBrand() {
       });
 
       if (response.ok) {
-        console.log(response);
+        // console.log(response);
         setLoading(false)
+        toast.success("New Brand Created Successfully :)")
         reset();
       }
     } catch (error) {
-      setLoading(false)
-      console.log(error);
+      setLoading(false);
+      toast.error("Failed to create a brand");
+      // console.log(error);
+      reset();
     }
   }
 

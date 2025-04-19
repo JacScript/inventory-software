@@ -86,7 +86,7 @@ export default function Sidebar() {
         href:"#",
       },
       {
-        id: 3,
+        id: 9,
         title: "Credit Notes",
         href:"#",
       },

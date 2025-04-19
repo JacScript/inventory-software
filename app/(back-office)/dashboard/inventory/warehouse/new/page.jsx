@@ -7,6 +7,7 @@ import TextInput from "@/components/FormInputs/TextInput";
 import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export default function NewWarehouse() {
   const selectOptions = [
@@ -28,7 +29,7 @@ export default function NewWarehouse() {
   } = useForm();
 
   async function onSubmit(data) {
-    console.log(data);
+    // console.log(data);
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -42,13 +43,17 @@ export default function NewWarehouse() {
       });
 
       if (response.ok) {
-        console.log(response);
+        // console.log(response);
         setLoading(false);
+        toast.success("Warehouse created successfully");
         reset();
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      toast.error("Failed to create warehouse");
+      reset();
+
+      // console.log(error);
     }
   }
 
@@ -64,6 +69,15 @@ export default function NewWarehouse() {
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3"
       >
         <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
+        <SelectInput
+            name="type"
+            label="Select The Warehouse Type"
+            register={register}
+            errors={errors}
+             className="w-full"
+            options={selectOptions}
+            
+          />
           <TextInput
             label="Warehouse  Title"
             name="title"
@@ -79,22 +93,14 @@ export default function NewWarehouse() {
             name="location"
             register={register}
             errors={errors}
-            className="w-full"
+            className="sm:col-span-2"
             //  isRequired ={true}
             //  type= "text"
             //  className="sm:col-span-2"
           />
-          <SelectInput
-            name="type"
-            label="Select The Warehouse Type"
-            register={register}
-            errors={errors}
-             className="w-full"
-            options={selectOptions}
-            
-          />
+         
           <TextareaInput
-            label="Category Description"
+            label="Warehouse Description"
             name="description"
             register={register}
             errors={errors}

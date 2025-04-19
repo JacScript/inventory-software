@@ -11,12 +11,12 @@ export async function POST(request){
               title
             }
     })
-    console.log(brand);
+   //  console.log(brand);
     return NextResponse.json(brand);
 
 
    } catch (error) {
-    console.log(error )
+   //  console.log(error )
      return NextResponse.json({
         error,
         message: "Failed to create a brand"
