@@ -132,7 +132,7 @@ export default function NewWarehouse() {
           </div>
         </div> */}
         </div>
-        <SubmitButton isLoading={loading} title="Category" />
+        <SubmitButton isLoading={loading} title="Warehouse" />
       </form>
     </div>
   );

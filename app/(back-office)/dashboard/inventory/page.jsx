@@ -1,7 +1,7 @@
 "use client";
 import FixedHeader from "@/components/dashboard/FixedHeader";
 import OptionCard from "@/components/dashboard/OptionCard";
-import { Diff, LayoutDashboard, LayoutPanelTopIcon, Scale, ScrollText, Slack, Warehouse } from "lucide-react";
+import { Diff, Factory, LayoutDashboard, LayoutPanelTopIcon, Scale, ScrollText, Slack, Warehouse } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect } from "react";
 
@@ -51,13 +51,22 @@ export default function Inventory() {
       icon: Scale,
     },
     {
+      title: "Suppliers",
+      desc: "Create standalone items and services that you buy and sell", 
+      link: "/dashboard/inventory/supplier/new",
+      linkTitle: "Create New Supplier",
+      enabled: true ,
+      icon: Factory ,
+    },
+    {
       title: "Inventory Adjustments", 
       desc: "Transfer Stock from the Main Warehouse",
-      link: "/dashboard/inventory/adjustments /new",
+      link: "/dashboard/inventory/adjustments/new",
       linkTitle: "Create New Adjustments",
       enabled: true ,
       icon: Diff ,
     },
+    
   ];
 
   return (
