@@ -10,7 +10,7 @@ export async function POST(request){
       data:{
         title,
         location,
-        warehouseType:type,
+        warehouseType: type,
          description 
       }
     });

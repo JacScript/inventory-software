@@ -1,30 +1,32 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function POST(request){
+export async function POST(request) {
    try {
-    
 
-    const { addStockQty,receivingWarehouseId,notes} = await request.json();
-    const adjustment = await db.adjustment.create({
-      data:{
-         addStockQty,receivingWarehouseId,notes 
 
-      }
-    })
-    
-    console.log(adjustment);
-    return NextResponse.json(adjustment);
+      const { referenceNumber, addStockQty, receivingWarehouseId, notes } = await request.json();
+      const adjustment = await db.addStockAdjustment.create({
+         data: {
+            referenceNumber,
+            addStockQty,
+            receivingWarehouseId,
+            notes
+         }
+      })
+
+      console.log(adjustment);
+      return NextResponse.json(adjustment);
 
 
    } catch (error) {
-    console.log(error )
-     return NextResponse.json({
-        error,
-        message: "Failed to create a brand"
-     },{
-        status: 500
-     })
+      console.log(error)
+      return NextResponse.json({
+         error,
+         message: "Failed to create a brand"
+      }, {
+         status: 500
+      })
    }
 }
 

@@ -13,39 +13,78 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 // schema.prisma
+model Item {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  description  String?
+  category     Category @relation(fields: [categoryId], references: [id])
+  categoryId   String   @db.ObjectId
+  sku          String   @unique
+  barcode      String?
+  quantity     Int
+  unit         Unit     @relation(fields: [unitId], references: [id])
+  unitId       String   @db.ObjectId
+  brand        Brand    @relation(fields: [brandId], references: [id])
+  brandId      String   @db.ObjectId
+  sellingPrice    Float
+  buyingPrice    Float
+  supplier     String
+  reOrderPoint Int
+  location     String?
+  imageUrl     String
+  //imagesUrl     String[]  @db.StringArray
+  weight       Float?
+  dimensions   String?
+  taxRate      Float
+  notes        String?
+}
+
 model Category {
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
-  title String
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
   description String?
+  Item        Item[]
 }
 
 // schema.prisma
 model Brand {
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
   title String
+  Item  Item[]
 }
 
 model Unit {
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
-  title String
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
   abbreviation String
+  Item         Item[]
 }
 
 model Warehouse {
- id  String  @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  location      String?
-  description   String?
-  warehouseType String
+  id                      String                    @id @default(auto()) @map("_id") @db.ObjectId
+  title                   String
+  location                String?
+  description             String?
+  warehouseType           String
+  AddStockAdjustment      AddStockAdjustment[]
+  TransferStockAdjustment TransferStockAdjustment[]
 }
 
-//model AddStockAdjustment {
-// id  String  @id @default(auto()) @map("_id") @db.ObjectId
- // title         String
- // location      String?
- // description   String?
-  //warehouseType String
-//}
+model AddStockAdjustment {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  referenceNumber String
+  addStockQty     Int
+  notes           String?
+  Warehouse       Warehouse @relation(fields: [warehouseId], references: [id])
+  warehouseId     String    @db.ObjectId
+}
 
+model TransferStockAdjustment {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  referenceNumber  String
+  transferStockQty Int
+  notes            String?
+  Warehouse        Warehouse @relation(fields: [warehouseId], references: [id])
+  warehouseId      String    @db.ObjectId
+}
