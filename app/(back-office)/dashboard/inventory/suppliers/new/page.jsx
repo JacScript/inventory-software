@@ -1,14 +1,11 @@
 "use client";
 import FormHeader from "@/components/dashboard/FormHeader";
-import SelectInput from "@/components/FormInputs/SelectInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import TextInput from "@/components/FormInputs/TextInput";
-import { makeApiRequest } from "@/lib/apiRequest";
-import { Plus } from "lucide-react";
-import React, { useState } from "react";
+import { makePostRequest } from "@/lib/apiRequest";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 
 export default function NewSuppliers() {
   const selectOptions = [
@@ -33,7 +30,7 @@ export default function NewSuppliers() {
     console.log(data);
     const baseUrl = "http://localhost:3000";
     // // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    makeApiRequest(setLoading,`${baseUrl}/api/suppliers`,data,"Supplier",reset) 
+    makePostRequest(setLoading,`${baseUrl}/api/suppliers`,data,"Supplier",reset) 
 
 
 

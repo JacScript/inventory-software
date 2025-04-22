@@ -30,24 +30,26 @@ export default function TransferInventoryForm() {
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    try {
-      const response = await fetch(`${baseUrl}/api/adjustments/transfer`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+        makePostRequest(setLoading,`${baseUrl}/api/adjustments/transfer`,data,"Adjustments Transferred",reset) 
+    
+    // try {
+    //   const response = await fetch(`${baseUrl}/api/adjustments/transfer`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    //   if (response.ok) {
+    //     console.log(response);
+    //     setLoading(false);
+    //     reset();
+    //   }
+    // } catch (error) {
+    //   setLoading(false);
+    //   console.log(error);
+    // }
   }
 
   return (

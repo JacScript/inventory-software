@@ -5,12 +5,12 @@ export async function POST(request) {
    try {
 
 
-      const { referenceNumber, addStockQty, receivingWarehouseId, notes } = await request.json();
+      const { referenceNumber, addStockQty, warehouseId, notes } = await request.json();
       const adjustment = await db.addStockAdjustment.create({
          data: {
             referenceNumber,
             addStockQty,
-            receivingWarehouseId,
+            warehouseId,
             notes
          }
       })

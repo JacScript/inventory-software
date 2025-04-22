@@ -4,6 +4,7 @@ import SelectInput from "@/components/FormInputs/SelectInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import TextInput from "@/components/FormInputs/TextInput";
+import { makePostRequest } from "@/lib/apiRequest";
 import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -33,28 +34,7 @@ export default function NewWarehouse() {
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    try {
-      const response = await fetch(`${baseUrl}/api/warehouses`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        // console.log(response);
-        setLoading(false);
-        toast.success("Warehouse created successfully");
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      toast.error("Failed to create warehouse");
-      reset();
-
-      // console.log(error);
-    }
+        makePostRequest(setLoading,`${baseUrl}/api/warehouses`,data,"Warehouse",reset) 
   }
 
   return (

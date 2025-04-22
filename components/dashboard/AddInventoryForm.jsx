@@ -3,6 +3,7 @@ import SelectInput from "@/components/FormInputs/SelectInput";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import TextInput from "@/components/FormInputs/TextInput";
+import { makePostRequest } from "@/lib/apiRequest";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -38,24 +39,26 @@ export default function AddInventoryForm() {
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    try {
-      const response = await fetch(`${baseUrl}/api/adjustments/add `, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+        makePostRequest(setLoading,`${baseUrl}/api/adjustments/add`,data,"Adjustments Added",reset) 
+    
+    // try {
+    //   const response = await fetch(`${baseUrl}/api/adjustments/add `, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    //   if (response.ok) {
+    //     console.log(response);
+    //     setLoading(false);
+    //     reset();
+    //   }
+    // } catch (error) {
+    //   setLoading(false);
+    //   console.log(error);
+    // }
   }
 
   return (
