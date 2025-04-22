@@ -97,10 +97,7 @@ export default function NewItem() {
   async function onSubmit(data) {
     data.imageUrl= imageUrl; 
     console.log(data);
-    setLoading(true);
-    const baseUrl = "http://localhost:3000";
-    // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        makePostRequest(setLoading,`${baseUrl}/api/items`,data,"Item",reset) 
+        makePostRequest(setLoading,'api/items',data,"Item",reset) 
     
     // try {
     //   const response = await fetch(`${baseUrl}/api/items`, {

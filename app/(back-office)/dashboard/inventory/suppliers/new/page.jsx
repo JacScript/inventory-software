@@ -28,9 +28,8 @@ export default function NewSuppliers() {
 
   async function onSubmit(data) {
     console.log(data);
-    const baseUrl = "http://localhost:3000";
     // // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    makePostRequest(setLoading,`${baseUrl}/api/suppliers`,data,"Supplier",reset) 
+    makePostRequest(setLoading,'api/suppliers',data,"Supplier",reset) 
 
 
 

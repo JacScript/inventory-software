@@ -18,13 +18,32 @@ export default function AddInventoryForm() {
       value: "branchagaegah",
     },
     {
-        label: "Main A",
-        value: "branchagaegah",
-      },
-      {
-        label: "Main B",
-        value: "bra90nchagaegah",
-      },
+      label: "Main A",
+      value: "branchagaegah",
+    },
+    {
+      label: "Main B",
+      value: "bra90nchagaegah",
+    },
+  ];
+
+  const items = [
+    {
+      label: "Item A",
+      value: "maiagaeshrnjan",
+    },
+    {
+      label: "Item B",
+      value: "branchagaegah",
+    },
+    {
+      label: "Item C",
+      value: "branchagaegah",
+    },
+    {
+      label: "Item D",
+      value: "bra90nchagaegah",
+    },
   ];
   const [loading, setLoading] = useState(false);
   const {
@@ -36,11 +55,14 @@ export default function AddInventoryForm() {
 
   async function onSubmit(data) {
     console.log(data);
-    setLoading(true);
-    const baseUrl = "http://localhost:3000";
-    // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        makePostRequest(setLoading,`${baseUrl}/api/adjustments/add`,data,"Adjustments Added",reset) 
-    
+    makePostRequest(
+      setLoading,
+      "api/adjustments/add",
+      data,
+      "Adjustments Added",
+      reset
+    );
+
     // try {
     //   const response = await fetch(`${baseUrl}/api/adjustments/add `, {
     //     method: "POST",
@@ -63,53 +85,61 @@ export default function AddInventoryForm() {
 
   return (
     //   {/* form */}
-      <form
-        action=""
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3"
-      >
-        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
-          <TextInput
+    <form
+      action=""
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3"
+    >
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
+        <TextInput
           type="number"
-            label="Reference Number"
-            name="referenceNumber"
-            register={register}
-            errors={errors}
-             
-          />
-          
-          <TextInput
+          label="Reference Number"
+          name="referenceNumber"
+          register={register}
+          errors={errors}
+          className="w-full"
+        />
+
+        <SelectInput
+          name="itemId"
+          label="Select The Item"
+          register={register}
+          errors={errors}
+          className="w-full"
+          options={items}
+        />
+
+        <TextInput
           type="number"
-            label="Enter Quantity of Stock to Add"
-            name="addStockQty"
-            register={register}
-            errors={errors}
-            className="w-full"
-            //  isRequired ={true}
-            //  type= "text"
-            //  className="sm:col-span-2"
-          />
-         
-          <SelectInput
-            name="warehouseId"
-            label="Select The Warehouse To Receive"
-            register={register}
-            errors={errors}
-             className="w-full"
-            options={branches}
-            
-          />
-          <TextareaInput
+          label="Enter Quantity of Stock to Add"
+          name="addStockQty"
+          register={register}
+          errors={errors}
+          className="w-full"
+          //  isRequired ={true}
+          //  type= "text"
+          //  className="sm:col-span-2"
+        />
+
+        <SelectInput
+          name="warehouseId"
+          label="Select The Warehouse To Receive"
+          register={register}
+          errors={errors}
+          className="w-full"
+          options={branches}
+        />
+        <TextareaInput
           // placeholder="Please Enter short notes about transfer"
-            label="Adjustment Notes"
-            name="notes"
-            register={register}
-            errors={errors}
-            // isRequired = true,
-            // type = "text",
-            // className = "sm:col-span-2",
-          />
-          {/* <div className="sm:col-span-2">
+          label="Adjustment Notes"
+          name="notes"
+          register={register}
+          errors={errors}
+          // isRequired = true,
+          // type = "text",
+          // className = "sm:col-span-2",
+        />
+        {/* <div className="sm:col-span-2">
           <label
             htmlFor="description"
             className="block text-sm font-medium leading-6 text-gray-900"
@@ -132,8 +162,8 @@ export default function AddInventoryForm() {
             )}
           </div>
         </div> */}
-        </div>
-        <SubmitButton isLoading={loading} title="Adjustments" />
-      </form>
+      </div>
+      <SubmitButton isLoading={loading} title="Adjustments" />
+    </form>
   );
 }

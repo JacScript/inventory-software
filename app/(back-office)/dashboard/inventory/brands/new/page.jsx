@@ -19,11 +19,8 @@ export default function NewBrand() {
   } = useForm();
 
   async function onSubmit(data) {
-    // console.log(data)
-    setLoading(true);
-    const baseUrl = "http://localhost:3000";
-    // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        makePostRequest(setLoading,`${baseUrl}/api/brands`,data,"Brand",reset) 
+    console.log(data)
+        makePostRequest(setLoading,'api/brands',data,"Brand",reset) 
   }
 
   return (

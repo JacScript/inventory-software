@@ -19,13 +19,11 @@ export default function NewUnit() {
   } = useForm();
 
   async function onSubmit(data) {
-    // console.log(data)
+    console.log(data)
     setLoading(true);
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        makePostRequest(setLoading,`${baseUrl}/api/units`,data,"Unit",reset) 
-    
-    
+    makePostRequest(setLoading, "api/units", data, "Unit", reset);
   }
 
   return (
@@ -50,16 +48,15 @@ export default function NewUnit() {
             //  type= "text"
           />
 
-<TextInput
+          <TextInput
             label="Unit Abbreviation"
             name="abbreviation"
             register={register}
             errors={errors}
             //  isRequired ={true}
             //  type= "text"
-             className="w-full"
+            className="w-full"
           />
-          
         </div>
         <SubmitButton isLoading={loading} title="Unit" />
       </form>

@@ -15,30 +15,31 @@ datasource db {
 
 // schema.prisma
 model Item {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  title        String
-  description  String?
-  category     Category @relation(fields: [categoryId], references: [id])
-  categoryId   String   @db.ObjectId
-  sku          String   @unique
-  barcode      String?
-  quantity     Int
-  unit         Unit     @relation(fields: [unitId], references: [id])
-  unitId       String   @db.ObjectId
-  brand        Brand    @relation(fields: [brandId], references: [id])
-  brandId      String   @db.ObjectId
-  sellingPrice Float
-  buyingPrice  Float
-  supplier     Supplier @relation(fields: [supplierId], references: [id])
-  supplierId   String   @db.ObjectId
-  reOrderPoint Int
-  location     String?
-  imageUrl     String
+  id                      String                    @id @default(auto()) @map("_id") @db.ObjectId
+  title                   String
+  description             String?
+  category                Category                  @relation(fields: [categoryId], references: [id])
+  categoryId              String                    @db.ObjectId
+  sku                     String                    @unique
+  barcode                 String?
+  quantity                Int
+  unit                    Unit                      @relation(fields: [unitId], references: [id])
+  unitId                  String                    @db.ObjectId
+  brand                   Brand                     @relation(fields: [brandId], references: [id])
+  brandId                 String                    @db.ObjectId
+  sellingPrice            Float
+  buyingPrice             Float
+  supplier                Supplier                  @relation(fields: [supplierId], references: [id])
+  supplierId              String                    @db.ObjectId
+  reOrderPoint            Int
+  location                String?
+  imageUrl                String
   //imagesUrl     String[]  @db.StringArray
-  weight       Float?
-  dimensions   String?
-  taxRate      Float
-  notes        String?
+  weight                  Float?
+  dimensions              String?
+  taxRate                 Float
+  notes                   String?
+  TransferStockAdjustment TransferStockAdjustment[]
 }
 
 model Category {
@@ -86,8 +87,10 @@ model TransferStockAdjustment {
   referenceNumber  String
   transferStockQty Int
   notes            String?
-  Warehouse        Warehouse @relation(fields: [warehouseId], references: [id])
+  warehouse        Warehouse @relation(fields: [warehouseId], references: [id])
   warehouseId      String    @db.ObjectId
+  item             Item      @relation(fields: [itemId], references: [id])
+  itemId           String    @db.ObjectId
 }
 
 model Supplier {
@@ -102,4 +105,4 @@ model Supplier {
   taxID         String?
   notes         String?
   Item          Item[]
- }
+}

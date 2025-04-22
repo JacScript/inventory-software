@@ -19,12 +19,8 @@ export default function NewCategory() {
   } = useForm();
 
   async function onSubmit(data) {
-    // console.log(data)
-    setLoading(true);
-    const baseUrl = "http://localhost:3000";
-    // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        makePostRequest(setLoading,`${baseUrl}/api/categories`,data,"Category",reset) 
-    
+    console.log(data);
+    makePostRequest(setLoading, "api/categories", data, "Category", reset);
   }
 
   return (

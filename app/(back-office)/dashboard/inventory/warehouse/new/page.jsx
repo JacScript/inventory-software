@@ -30,11 +30,10 @@ export default function NewWarehouse() {
   } = useForm();
 
   async function onSubmit(data) {
-    // console.log(data);
+    console.log(data);
     setLoading(true);
-    const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-        makePostRequest(setLoading,`${baseUrl}/api/warehouses`,data,"Warehouse",reset) 
+        makePostRequest(setLoading,'api/warehouses',data,"Warehouse",reset) 
   }
 
   return (
