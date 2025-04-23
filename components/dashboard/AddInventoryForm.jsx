@@ -122,7 +122,7 @@ export default function AddInventoryForm() {
         />
 
         <SelectInput
-          name="warehouseId"
+          name="receivingWarehouseId"
           label="Select The Warehouse To Receive"
           register={register}
           errors={errors}

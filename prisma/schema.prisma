@@ -40,6 +40,7 @@ model Item {
   taxRate                 Float
   notes                   String?
   TransferStockAdjustment TransferStockAdjustment[]
+  AddStockAdjustment      AddStockAdjustment[]
 }
 
 model Category {
@@ -68,9 +69,7 @@ model Warehouse {
   title                   String
   location                String?
   description             String?
-  warehouseType           String
-  AddStockAdjustment      AddStockAdjustment[]
-  TransferStockAdjustment TransferStockAdjustment[]
+  warehouseType           String 
 }
 
 model AddStockAdjustment {
@@ -78,8 +77,9 @@ model AddStockAdjustment {
   referenceNumber String
   addStockQty     Int
   notes           String?
-  Warehouse       Warehouse @relation(fields: [warehouseId], references: [id])
-  warehouseId     String    @db.ObjectId
+  receivingWarehouseId     String 
+  item            Item      @relation(fields: [itemId], references: [id])
+  itemId          String    @db.ObjectId
 }
 
 model TransferStockAdjustment {
@@ -87,8 +87,8 @@ model TransferStockAdjustment {
   referenceNumber  String
   transferStockQty Int
   notes            String?
-  warehouse        Warehouse @relation(fields: [warehouseId], references: [id])
-  warehouseId      String    @db.ObjectId
+  givingWarehouseId      String    
+  receivingWarehouseId   String   
   item             Item      @relation(fields: [itemId], references: [id])
   itemId           String    @db.ObjectId
 }

@@ -4,6 +4,7 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import TextInput from "@/components/FormInputs/TextInput";
 import React, { useState } from "react";
+import { makePostRequest } from "@/lib/apiRequest";
 import { useForm } from "react-hook-form";
 
 export default function TransferInventoryForm() {
@@ -49,30 +50,11 @@ export default function TransferInventoryForm() {
     // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
     makePostRequest(
       setLoading,
-      "api/adjustments/transfer",
+      "api/adjustments/transfer ",
       data,
       "Adjustments Transferred",
       reset
     );
-
-    // try {
-    //   const response = await fetch(`${baseUrl}/api/adjustments/transfer`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-
-    //   if (response.ok) {
-    //     console.log(response);
-    //     setLoading(false);
-    //     reset();
-    //   }
-    // } catch (error) {
-    //   setLoading(false);
-    //   console.log(error);
-    // }
   }
 
   return (
@@ -110,7 +92,7 @@ export default function TransferInventoryForm() {
         />
 
         <SelectInput
-          name="warehouseId"
+          name="givingWarehouseId"
           label="Select The Warehouse To Provide"
           register={register}
           errors={errors}
