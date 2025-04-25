@@ -22,11 +22,29 @@ export async function POST(request){
     // console.log(error )
      return NextResponse.json({
         error,
-        message: "Failed to create a unit"
+        message: "Failed to create a warehouse"
      },{
         status: 500
      })
    }
+}
+
+export async function GET(request){
+    try {
+        const warehouses = await db.warehouse.findMany({
+           orderBy:{
+            createdAt: "desc" //Latest Warehouse 
+           }
+        });
+        return NextResponse.json(warehouses);
+    } catch (error) {
+        return NextResponse.json({
+            error,
+            message: "Failed to fetch warehouses"
+        },{
+            status: 500
+        })
+    }
 }
 
 
