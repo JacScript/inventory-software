@@ -12,7 +12,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default  async function CreateItemForm({categories, brands, units, warehouses, suppliers}) {
+export default function CreateItemForm({categories, brands, units, warehouses, suppliers}) {
   const [imageUrl, setImageUrl] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -61,7 +61,7 @@ export default  async function CreateItemForm({categories, brands, units, wareho
       >
         <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
           <TextInput
-            label="Warehouse  Title"
+            label="Item Title"
             name="title"
             register={register}
             errors={errors}
