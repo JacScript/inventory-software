@@ -32,6 +32,25 @@ export async function POST(request) {
 }
 
 
+export async function GET(request){
+   try {
+       const adjustments = await db.addStockAdjustment.findMany({
+          orderBy:{
+           createdAt: "desc" //Latest Warehouse 
+          }
+       });
+       return NextResponse.json(adjustments);
+   } catch (error) {
+       return NextResponse.json({
+           error,
+           message: "Failed to fetch adjustments"
+       },{
+           status: 500
+       })
+   }
+}
+
+
 
 
 // import { NextResponse } from "next/server";

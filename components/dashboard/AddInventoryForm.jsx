@@ -7,44 +7,10 @@ import { makePostRequest } from "@/lib/apiRequest";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default function AddInventoryForm() {
-  const branches = [
-    {
-      label: "Branch A",
-      value: "maiagaeshrnjan",
-    },
-    {
-      label: "Branch B",
-      value: "branchagaegah",
-    },
-    {
-      label: "Main A",
-      value: "branchagaegah",
-    },
-    {
-      label: "Main B",
-      value: "bra90nchagaegah",
-    },
-  ];
+export default function AddInventoryForm({items,warehouses}) {
+  
 
-  const items = [
-    {
-      label: "Item A",
-      value: "maiagaeshrnjan",
-    },
-    {
-      label: "Item B",
-      value: "branchagaegah",
-    },
-    {
-      label: "Item C",
-      value: "branchagaegah",
-    },
-    {
-      label: "Item D",
-      value: "bra90nchagaegah",
-    },
-  ];
+  
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -92,7 +58,6 @@ export default function AddInventoryForm() {
     >
       <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
         <TextInput
-          type="number"
           label="Reference Number"
           name="referenceNumber"
           register={register}
@@ -127,7 +92,7 @@ export default function AddInventoryForm() {
           register={register}
           errors={errors}
           className="w-full"
-          options={branches}
+          options={warehouses}
         />
         <TextareaInput
           // placeholder="Please Enter short notes about transfer"

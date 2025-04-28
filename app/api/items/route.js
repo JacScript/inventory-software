@@ -1,3 +1,4 @@
+import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request){
@@ -22,13 +23,13 @@ export async function POST(request){
         warehouseId: itemData.warehouseId,
         imageUrl: itemData.imageUrl,
         weight: parseFloat(itemData.weight),
-        dimension: itemData.dimension,
+        dimensions: itemData.dimensions,
         taxRate: parseFloat(itemData.taxRate),
          description: itemData.description,
           notes: itemData.notes,
       }
     });
-    return NextResponse.json(category);
+    return NextResponse.json(item);
 
 
    } catch (error) {
@@ -39,6 +40,24 @@ export async function POST(request){
      },{
         status: 500
      })
+   }
+}
+
+export async function GET(request){
+   try {
+       const items = await db.item.findMany({
+          orderBy:{
+           createdAt: "desc" //Latest Warehouse 
+          }
+       });
+       return NextResponse.json(items);
+   } catch (error) {
+       return NextResponse.json({
+           error,
+           message: "Failed to fetch items"
+       },{
+           status: 500
+       })
    }
 }
 

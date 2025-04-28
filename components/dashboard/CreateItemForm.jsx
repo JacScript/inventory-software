@@ -26,7 +26,8 @@ export default function CreateItemForm({categories, brands, units, warehouses, s
   async function onSubmit(data) {
     data.imageUrl= imageUrl; 
     console.log(data);
-        makePostRequest(setLoading,'api/items',data,"Item",reset) 
+        makePostRequest(setLoading,'api/items',data,"Item",reset) ;
+        setImageUrl("");
     
     // try {
     //   const response = await fetch(`${baseUrl}/api/items`, {
@@ -181,7 +182,7 @@ export default function CreateItemForm({categories, brands, units, warehouses, s
 
           <TextInput
             label="Item Dimension in cm (20 x 20 x 20)"
-            name="dimension"
+            name="dimensions"
             register={register}
             errors={errors}
             className="w-full"

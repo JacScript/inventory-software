@@ -13,37 +13,37 @@ export default function Sidebar() {
       {
         id: 1,
         title: "Items",
-        href:"/dashboard/inventory/items/new",
+        href:"/dashboard/inventory",
       },
       {
         id: 2,
         title: "Categories",
-        href:"/dashboard/inventory/categories/new",
+        href:"/dashboard/inventory",
       },
       {
         id: 3,
         title: "Brands",
-        href:"/dashboard/inventory/brands/new",
+        href:"/dashboard/inventory",
       },
       {
         id: 4,
         title: "Units",
-        href:"/dashboard/inventory/units/new",
+        href:"/dashboard/inventory",
       },
       {
         id: 5,
         title: "Warehouse",
-        href:"/dashboard/inventory/warehouse/new",
+        href:"/dashboard/inventory",
       },
       {
         id: 6,
         title: "Inventory Adjustments",
-        href:"/dashboard/inventory/adjustments/new",
+        href:"/dashboard/inventory",
       },
       {
         id: 7,
         title: "Suppliers",
-        href:"/dashboard/inventory/suppliers/new",
+        href:"/dashboard/inventory",
       },
      ]
 
