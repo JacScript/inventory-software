@@ -48,6 +48,10 @@ export async function GET(request){
        const items = await db.item.findMany({
           orderBy:{
            createdAt: "desc" //Latest Warehouse 
+          },
+          include:{
+            category: true, //Returns all fields of the category
+            // suppliers: true, //Returns all fields of the unit
           }
        });
        return NextResponse.json(items);

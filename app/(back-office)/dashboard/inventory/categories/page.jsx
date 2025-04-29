@@ -4,14 +4,14 @@ import { getData } from "@/lib/getData";
 
 export default async function Categories() {
   const categories = await getData("categories");
-  const data = categories.map(obj =>{
-    return {
-      title: obj.title,
-      description: obj.description,
-    }
-  })
+  // const data = categories.map(obj =>{
+  //   return {
+  //     title: obj.title,
+  //     description: obj.description,
+  //   }
+  // })
 
-  const columns = ["Category Title", "Category Description", "actions"];
+  const columns = ["title", "description"];
   return (
     <div>
       {/* header */}
@@ -23,7 +23,7 @@ export default async function Categories() {
       {/* content */}
 
       <div className="my-4 p-8">
-        <DataTable data={data} columns={columns} />
+        <DataTable data={categories} columns={columns} />
       </div>
     </div>
   );
