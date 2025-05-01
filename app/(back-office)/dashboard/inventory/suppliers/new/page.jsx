@@ -63,7 +63,10 @@ export default function NewSuppliers() {
   return (
     <div>
       {/* header */}
-      <FormHeader title="New Supplier" href="/dashboard/inventory/" />
+      <FormHeader
+       title="New Supplier" 
+      //  href="/dashboard/inventory/" 
+       />
 
       {/* form */}
       <form

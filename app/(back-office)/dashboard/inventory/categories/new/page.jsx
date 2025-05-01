@@ -26,7 +26,10 @@ export default function NewCategory() {
   return (
     <div>
       {/* header */}
-      <FormHeader title="New Category" href="#" />
+      <FormHeader 
+      title="New Category"
+      //  href="#"
+        />
 
       {/* form */}
       <form

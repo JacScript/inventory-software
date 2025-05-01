@@ -26,7 +26,10 @@ export default function NewBrand() {
   return (
     <div>
       {/* header */}
-      <FormHeader title="New Brand" href="/dashboard/inventory/" />
+      <FormHeader
+       title="New Brand" 
+      //  href="/dashboard/inventory/"
+        />
 
       {/* form */}
       <form

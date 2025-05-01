@@ -10,7 +10,7 @@ export default async function Units() {
 //          }
 //   })
 
-  const columns = ["title"];
+  const columns = ["title","abbreviation"];
   return (
     <div>
       {/* header */}
