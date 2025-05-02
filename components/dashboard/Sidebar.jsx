@@ -1,5 +1,5 @@
 "use client"
-import { BaggageClaim, BarChart3, BarChart4, Cable, ChevronLeft, Files, Home, PlusCircle, ShoppingBag, ShoppingBasket, ShoppingCart } from 'lucide-react'
+import { BaggageClaim, BarChart3, BarChart4, Cable, ChevronLeft, Files, Home, PlusCircle, ShoppingBag, ShoppingBasket, ShoppingCart, X } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react';
 import CollapsableLink from './CollapsibleLink';
@@ -8,7 +8,10 @@ import SidebarDropdownLink from './SidebarDropdownLink';
 
 
 
-export default function Sidebar() {
+export default function Sidebar({showSidebar, setShowSidebar}) {
+  // console.log(showSidebar);
+
+  console.log(setShowSidebar)
      const inventoryLinks = [
       {
         id: 8,
@@ -102,17 +105,27 @@ export default function Sidebar() {
       },
      ]
   return (
-    <div className="w-64  min-h-screen bg-slate-800 text-slate-50 flex flex-col justify-between fixed">
+    // <div className="w-64  min-h-screen bg-slate-800 text-slate-50 flex flex-col justify-between fixed  sm:block">
+    <div
+      className={`${
+        showSidebar
+          ? "w-64  min-h-screen bg-slate-800 text-slate-50 fixed flex flex-col justify-between z-50"
+          : "w-64  min-h-screen bg-slate-800 text-slate-50 fixed sm:flex flex-col justify-between z-50 hidden"
+      }`}
+    >
       {/* Top part */}
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         {/* Logo */}
-        <Link
-          href="#"
-          className="flex space-x-2 items-center bg-slate-950 py-3 px-2"
-        >
-          <BaggageClaim />
-          <span className="font-semibold text-xl">Inventory</span>
-        </Link>
+        <div className="bg-slate-950 flex items-center justify-between">
+          <Link href="#" className="flex space-x-2 items-center py-3 px-2">
+            <BaggageClaim />
+            <span className="font-semibold text-xl">Inventory</span>
+          </Link>
+
+          <button>
+            <X onClick={() => setShowSidebar(false)} className="w-4 h-4 mr-4 text-white lg:hidden z-50" />
+          </button>
+        </div>
 
         {/* Links */}
         <nav className="flex flex-col space-y-3 px-3 py-4">
@@ -125,10 +138,17 @@ export default function Sidebar() {
           </Link>
 
           {/* collapsible  inventory component */}
-      <SidebarDropdownLink title="Inventory" items={inventoryLinks} icon={BaggageClaim}/>
+          <SidebarDropdownLink
+            title="Inventory"
+            items={inventoryLinks}
+            icon={BaggageClaim}
+          />
           {/* collapsible  sales component */}
-      <SidebarDropdownLink title="Sales" items={salesLinks} icon={ShoppingBasket}/>
-
+          <SidebarDropdownLink
+            title="Sales"
+            items={salesLinks}
+            icon={ShoppingBasket}
+          />
 
           {/* <button className="flex items-center space-x-2 p-2" href="">
             <ShoppingBasket className="w-4 h-4" />
