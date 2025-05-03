@@ -10,6 +10,7 @@ export default async function Brands() {
 //          }
 //   })
 
+console.log(brands)
   const columns = ["title"];
   return (
     <div>
@@ -22,7 +23,10 @@ export default async function Brands() {
       {/* content */}
 
       <div className="my-4 p-8">
-        <DataTable data={brands} columns={columns} />
+        {
+          brands.length < 1 ? (<p>No Data</p>) : ( <DataTable data={brands} columns={columns} />)
+        }
+       
       </div>
     </div>
   );

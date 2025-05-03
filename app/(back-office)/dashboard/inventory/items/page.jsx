@@ -11,6 +11,7 @@ export default async function Categories() {
   //   }
   // })
 
+
   const columns = ["title", "sellingPrice","buyingPrice"];
   return (
     <div>
@@ -23,7 +24,7 @@ export default async function Categories() {
       {/* content */}
 
       <div className="my-4 p-8">
-        <DataTable data={items} columns={columns} />
+        <DataTable data={items || []} columns={columns} />
       </div>
     </div>
   );

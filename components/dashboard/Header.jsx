@@ -5,15 +5,12 @@ import Image from "next/image";
 
 export default function Header({setShowSidebar}) {
 
-  const handleMenuClick = () => {
-    console.log("Button Clicked");
-    setShowSidebar(true)
-  }
+ 
   return (
     <div className="bg-gray-100 h-12 flex justify-between items-center px-8 border-b border-slate-200 shadow">
       {/* First Div */}
 
-      <button onClick={handleMenuClick} className="lg:hidden">
+      <button onClick={() => setShowSidebar(true)} className="lg:hidden">
         <AlignJustify className="w-6 h-6"/>
       </button>
       <div className="flex gap-3 ">
