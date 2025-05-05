@@ -4,13 +4,7 @@ import { getData } from "@/lib/getData";
 
 export default async function Suppliers() {
   const suppliers = await getData("suppliers");
-  // const data = suppliers.map(obj =>{
-  //   return {
-  //     name: obj.name,
-  //     phone: obj.phone,
-  //     email: obj.email
-  //   }
-  // })
+  // const suppliers = [];
 
   const columns = ["name", "phone", "email"];
   return (
@@ -24,7 +18,7 @@ export default async function Suppliers() {
       {/* content */}
 
       <div className="my-4 p-8">
-        <DataTable data={suppliers} columns={columns} />
+        <DataTable data={suppliers} columns={columns} updateLink="/dashboard/inventory/suppliers/new"/>
       </div>
     </div>
   );

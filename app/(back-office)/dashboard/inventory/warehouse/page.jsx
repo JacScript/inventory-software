@@ -4,15 +4,9 @@ import { getData } from "@/lib/getData";
 
 export default async function Warehouse() {
   const warehouses = await getData("warehouses");
-  // const data = suppliers.map(obj =>{
-  //   return {
-  //     name: obj.name,
-  //     phone: obj.phone,
-  //     email: obj.email
-  //   }
-  // })
+  // const warehouses = [];
 
-  const columns = ["title", "location","warehouseType"];
+  const columns = ["title", "location", "warehouseType"];
   return (
     <div>
       {/* header */}
@@ -24,7 +18,11 @@ export default async function Warehouse() {
       {/* content */}
 
       <div className="my-4 p-8">
-        <DataTable data={warehouses} columns={columns} />
+        <DataTable
+          data={warehouses}
+          columns={columns}
+          updateLink="/dashboard/inventory/warehouse/new"
+        />
       </div>
     </div>
   );

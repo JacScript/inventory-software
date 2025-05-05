@@ -4,12 +4,7 @@ import { getData } from "@/lib/getData";
 
 export default async function Categories() {
   const categories = await getData("categories");
-  // const data = categories.map(obj =>{
-  //   return {
-  //     title: obj.title,
-  //     description: obj.description,
-  //   }
-  // })
+  // const categories = [];
 
   const columns = ["title", "description"];
   return (
@@ -23,7 +18,7 @@ export default async function Categories() {
       {/* content */}
 
       <div className="my-4 p-8">
-        <DataTable data={categories} columns={columns} />
+        <DataTable data={categories} columns={columns} updateLink="/dashboard/inventory/categories/new" />
       </div>
     </div>
   );

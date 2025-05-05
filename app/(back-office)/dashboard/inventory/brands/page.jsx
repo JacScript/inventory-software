@@ -4,14 +4,10 @@ import { getData } from "@/lib/getData";
 
 export default async function Brands() {
   const brands = await getData("brands");
-//   const data = brands.map(obj =>{
-//     return {
-//       title: obj.title,
-//          }
-//   })
+  // const brands = [];
 
-console.log(brands)
-  const columns = ["title"];
+
+  const columns = ["title","createdAt","updatedAt"];
   return (
     <div>
       {/* header */}
@@ -23,10 +19,8 @@ console.log(brands)
       {/* content */}
 
       <div className="my-4 p-8">
-        {
-          brands.length < 1 ? (<p>No Data</p>) : ( <DataTable data={brands} columns={columns} />)
-        }
        
+        <DataTable data={brands} columns={columns}  updateLink="/dashboard/inventory/brands/new" />
       </div>
     </div>
   );

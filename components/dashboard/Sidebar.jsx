@@ -20,7 +20,6 @@ import SubscriptionCard from "./SubscriptionCard";
 import SidebarDropdownLink from "./SidebarDropdownLink";
 
 export default function Sidebar({ showSidebar, setShowSidebar }) {
-  console.log(showSidebar);
 
   const inventoryLinks = [
     {

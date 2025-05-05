@@ -5,6 +5,7 @@ import { getData } from "@/lib/getData";
 export default async function Adjustments() {
   const addAdjustments =  getData("adjustments/add");
   const transferAdjustments =  getData("adjustments/transfer");
+  // const transferAdjustments = []
 
   const [addAdjustmentsData, transferAdjustmentsData] = await Promise.all([
     addAdjustments,
@@ -17,17 +18,7 @@ export default async function Adjustments() {
   
 
 
-//   const [addAdjustmentsData, transferAdjustmentsData] = await Promise.all([
-//     addAdjustments,
-//     transferAdjustments,
-//   ]);
-// //   const data = units.map(obj =>{
-// //     return {
-// //       title: obj.title,
-// //          }
-// //   })
 
-//   const columns = ["referenceNumber","addStockQty || transferStockQty"];
   return (
     <div>
       {/* header */}
@@ -40,12 +31,12 @@ export default async function Adjustments() {
 
       <div className="my-4 p-8">
         <h2 className="mb-2 text-xl pl-6 font-bold uppercase">Stock Increments Adjustments</h2>
-        <DataTable data={addAdjustmentsData} columns={addStockColumns} />
+        <DataTable data={addAdjustmentsData} columns={addStockColumns} updateLink="/dashboard/inventory/adjustments/new"/>
       </div>
 
       <div className="my-4 p-8">
         <h2 className="mb-2 pl-6 text-xl font-bold uppercase">Stock Transfer Adjustments</h2>
-        <DataTable data={transferAdjustmentsData} columns={transferStockColumns} />
+        <DataTable data={transferAdjustmentsData} columns={transferStockColumns} updateLink="/dashboard/inventory/adjustments/new" />
       </div>
     </div>
   );
